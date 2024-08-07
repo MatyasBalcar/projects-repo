@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fridge</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <h1>Whats in my fridge?</h1>
+    <table border="1">
+        <tr>
+            <th style="width:200px">Nazev</th>
+            <th style="width:150px">Datum pridani</th>
+            <th style="width:100px">Otevrene?</th>
+            <th style="width:250px">Datum trvanlivosti</th>
+            <th style="width:180px">Akce</th>
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>
+                {% if row[3] == 'Zadne' %}
+                <form action="/update_expiry" method="POST" style="display: inline;">
+                    <input type="hidden" name="id" value="{{ row[4] }}"> <!-- Include the Id field -->
+                    <input type="date" name="expiry_date">
+                    <input type="submit" value="Set Expiry">
+                </form>
+                {% else %}
+                {{ row[3] }}
+                {% endif %}
+            </td>
+            <td>
+
+                <form action="/remove" method="POST" style="display: inline;">
+                    <input type="hidden" name="id" value="{{ row[4] }}"> <!-- Include the Id field -->
+
+                    <input type="submit" value="Remove" class="remove-button">
+                </form>
+                <form action="/update_open" method="POST" style="display: inline;">
+                    <input type="hidden" name="id" value="{{ row[4] }}"> <!-- Include the Id field -->
+
+                    <input type="submit" value="Update Open">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

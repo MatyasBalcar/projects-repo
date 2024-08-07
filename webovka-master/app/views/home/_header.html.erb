@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Race logger</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+
+        <a class="nav-link " aria-current="page" href="#"><%= link_to 'Home', root_path, class:'navbar-brand'%></a>
+        <a class="nav-link " aria-current="page" href="#"><%= link_to 'Show races', races_path, class:'navbar-brand'%></a>
+        <a class="nav-link " aria-current="page" href="#"><%= link_to 'Trackdays', reservations_path, class:'navbar-brand'%></a>
+        <%if admin? %>
+          <a class="nav-link " aria-current="page" href="#"><%= link_to 'Add a race', new_race_path, class:'btn btn-outline-success'%></a>
+        <%end %>
+        <%if user_signed_in? %>
+
+          <a class="nav-link " aria-current="page" href="#"><%= link_to 'Reserve a track day', new_reservation_path, class:'btn btn-outline-success'%></a>
+          <a class='nav-link' href='#'><%= link_to "Sign out",  destroy_user_session_path,:method => :get, class:"btn btn-outline-danger" %></a>
+          <a  class='nav-link' href='#'>Signed in as: <b><%= current_user.email %></b></a>
+          <a  class='nav-link' href='#'>Account type: <b><%=signed_in_as_admin?(admin?) %></b></a>
+        <%else %>
+          <a class="nav-link " aria-current="page" href="#"><%= link_to 'Sign up', new_user_registration_path, class:'btn btn-success'%></a>
+          <a class="nav-link " aria-current="page" href="#"><%= link_to 'Sign in', new_user_session_path, class:'btn btn-success'%></a>
+
+        <%end %>
+
+
+
+      </div>
+    </div>
+  </div>
+</nav>

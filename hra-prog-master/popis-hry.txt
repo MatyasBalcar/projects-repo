@@ -1,0 +1,4 @@
+-Hra vykresluje vesmirnou lod ktera se snayi prekonat nesnaze sve dlouhe trasy
+-Raketa bude mit vlastnost pohybu a strelby
+-barvy apod jeste budou vymysleny
+-

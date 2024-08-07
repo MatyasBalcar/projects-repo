@@ -1,0 +1,13 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #222;
+    /* Dark background color */
+    color: #fff;
+    /* Light text color */
+}
+
+.remove-button {
+    color: red;
+    background-color: white;
+    border-radius: 15%;
+}
